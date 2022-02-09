@@ -57,7 +57,7 @@ public class DisjointSets {
     /* find resentative of element i */
     public int find(int i) {
 
-        /* Fill this method (The statement return 0 is here only to compile) */
+        /* TODO: Fill this method (The statement return 0 is here only to compile) */
         return 0;
 
     }
@@ -65,7 +65,7 @@ public class DisjointSets {
     /* merge sets containing elements i and j */
     public int union(int i, int j) {
 
-        /* Fill this method (The statement return 0 is here only to compile) */
+        /* TODO: Fill this method (The statement return 0 is here only to compile) */
         return 0;
 
     }

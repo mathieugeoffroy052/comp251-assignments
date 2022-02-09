@@ -47,16 +47,16 @@ public class Chaining {
 
     /**Implements the hash function h(k)*/
     public int chain (int key) {
-        // TODO: implement this and change the return statement
-        return -1;
+        return ((this.A * key) % (power2(this.w))) >> (this.w - this.r); //translate given formula into code
     }
 
 
     /**Inserts key k into hash table. Returns the number of collisions encountered*/
     public int insertKey(int key){
-        //TODO: implement this and change the return statement
-        return -1;
-
+        int hash = chain(key);
+        int collisions = this.Table.get(hash).size();
+        this.Table.get(hash).add(0, key);
+        return collisions;
     }
 
 
