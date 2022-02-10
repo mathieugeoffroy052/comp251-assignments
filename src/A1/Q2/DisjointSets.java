@@ -54,20 +54,29 @@ public class DisjointSets {
         return output;
     }
 
-    /* find resentative of element i */
+    /* find representative of element i */
     public int find(int i) {
-
-        /* TODO: Fill this method (The statement return 0 is here only to compile) */
-        return 0;
-
+        if (par[i] == i) {
+            return i;
+        } else {
+            par[i] = find(par[i]);
+            return par[i];
+        }
     }
 
     /* merge sets containing elements i and j */
     public int union(int i, int j) {
-
-        /* TODO: Fill this method (The statement return 0 is here only to compile) */
-        return 0;
-
+        if (find(i) != find(j)) {
+            if (rank[find(j)] > rank[find(i)]) {
+                par[find(i)] = find(j);
+            } else if (rank[find(j)] < rank[find(i)]) {
+                par[find(j)] = find(i);
+            } else {
+                par[find(i)] = find(j);
+                rank[find(j)]++;
+            }
+        }
+        return find(j);
     }
 
     public static void main(String[] args) {
