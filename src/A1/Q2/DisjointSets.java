@@ -55,6 +55,7 @@ public class DisjointSets {
     }
 
     /* find representative of element i */
+    //Source: class notes
     public int find(int i) {
         if (par[i] == i) {
             return i;
@@ -65,18 +66,19 @@ public class DisjointSets {
     }
 
     /* merge sets containing elements i and j */
+    //Source: class notes
     public int union(int i, int j) {
         if (find(i) != find(j)) {
-            if (rank[find(j)] > rank[find(i)]) {
+            if (rank[find(j)] > rank[find(i)]) { //rank J bigger: merge i to j
                 par[find(i)] = find(j);
-            } else if (rank[find(j)] < rank[find(i)]) {
+            } else if (rank[find(j)] < rank[find(i)]) { //rank I bigger: merge j to i
                 par[find(j)] = find(i);
-            } else {
+            } else { //equal ranks: merge i to j, increase rank of new root
                 par[find(i)] = find(j);
                 rank[find(j)]++;
             }
         }
-        return find(j);
+        return find(j); //same value, no matter i or j
     }
 
     public static void main(String[] args) {

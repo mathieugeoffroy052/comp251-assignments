@@ -7,17 +7,18 @@ import java.util.*;
 public class A1_Q3 {
 
 	private static Hashtable<String, Hashtable<String, Integer>> map;
+	// hashtable: names -> (hashtable: words -> frequency (int))
 
 
 	public static ArrayList<String> Discussion_Board(String[] posts) {
 
 		map = new Hashtable<String, Hashtable<String, Integer>>();
 
-		for (String line : posts) {
+		for (String line : posts) { //go through each line, split strings by words (with spaces)
 			StringTokenizer stringTokenizer = new StringTokenizer(line, " ");
 			String name = stringTokenizer.nextToken();
 
-			while (stringTokenizer.hasMoreTokens()) {
+			while (stringTokenizer.hasMoreTokens()) { //add each word to hashmap
 				String word = stringTokenizer.nextToken();
 				if (!map.containsKey(name)) {
 					map.put(name, new Hashtable<String, Integer>());
@@ -37,7 +38,7 @@ public class A1_Q3 {
 		int numNames = map.keySet().size();
 		Hashtable<String, Integer> allWords = new Hashtable<String, Integer>();
 
-		while (names.hasMoreElements()) {
+		while (names.hasMoreElements()) { //make hashmap of all words and total num of times they show up
 			String nm = names.nextElement();
 			Hashtable<String, Integer> wordFreqs = map.get(nm);
 			for (String w : wordFreqs.keySet()) {
@@ -54,7 +55,7 @@ public class A1_Q3 {
 		ArrayList<String> commonWords = new ArrayList<String>();
 		ArrayList<Integer> commonWordsFreq = new ArrayList<Integer>();
 
-		while (words.hasMoreElements()) {
+		while (words.hasMoreElements()) { //convert all words hashmap to two array list
 			String w = words.nextElement();
 			commonWords.add(w);
 			commonWordsFreq.add(allWords.get(w));
@@ -63,7 +64,7 @@ public class A1_Q3 {
 		ArrayList<String> filteredCommonWords = new ArrayList<String>();
 		ArrayList<Integer> filteredCommonWordsFreq = new ArrayList<Integer>();
 
-		for (int i = 0; i < commonWords.size(); i++) {
+		for (int i = 0; i < commonWords.size(); i++) { //only keep words that have been said by all names
 			String w = commonWords.get(i);
 			boolean saidByAllNames = true;
 			for (String nm : map.keySet()) {
@@ -77,12 +78,13 @@ public class A1_Q3 {
 				filteredCommonWordsFreq.add(commonWordsFreq.get(i));
 			}
 		}
-
+		//sort array of remaining words according to identical array holding frequency
 		return (mergeSort (filteredCommonWords, filteredCommonWordsFreq)).get(0);
 	}
 
 	/**
 	 * Merge Sort algorithm sorts by frequency, then alphabetical order if needed
+	 * When rearranging arrays, need to rearrange both word array and its sister frequency array
 	 * Source: COMP 250 Notes (Winter 2021)
 	 * @param wordList List to sort
 	 * @param wordFreqList Frequency of each word in previous list, to determine soring order
@@ -115,6 +117,7 @@ public class A1_Q3 {
 
 	/**
 	 * Merges two lists by re-placing the elements in order according to their frequency, then alphabetical order
+	 * When rearranging arrays, need to do both word array and sister frequency array
 	 * Source: COMP 250 Notes (Winter 250)
 	 * @param wordList1 First list to merge
 	 * @param wordFreq1 Frequency of each word in first list, to determine sorting order

@@ -42,7 +42,7 @@ public class Open_Addressing {
     }
     /**Implements the hash function g(k)*/
     public int probe(int key, int i) {
-        if (i < 0 || i >= this.m ) {
+        if (i < 0 || i >= this.m ) { //input filtering
             return -1;
         }
         int h = ((this.A * key) % (power2(this.w))) >> (this.w - this.r); //same formula as chain
@@ -54,9 +54,9 @@ public class Open_Addressing {
     public int insertKey(int key){
         int numTries = 0;
         int hash;
-        for (; numTries < this.m; numTries++) {
+        for (; numTries < this.m; numTries++) { //try to insert key until hashed index is free
             hash = probe(key, numTries);
-            if (hash != -1 && this.Table[hash] < 0) {
+            if (hash != -1 && this.Table[hash] < 0) { // < 0 value indicates no element
                 this.Table[hash] = key;
                 return numTries;
             }
@@ -77,13 +77,13 @@ public class Open_Addressing {
     public int removeKey(int key){
         int numTries = 0;
         int hash;
-        for (; numTries < this.m; numTries++) {
+        for (; numTries < this.m; numTries++) { //keep hashing until find key to be removed, or until num of slots
             hash = probe(key, numTries);
             if (this.Table[hash] == key) {
-                this.Table[hash] = -key - 1;
+                this.Table[hash] = -key - 1; //so that we know that a key was removed here
                 return numTries;
-            } else if (this.Table[hash] == -key - 1 || this.Table[hash] == -1) {
-                return numTries + 1;
+            } else if (this.Table[hash] == -key - 1 || this.Table[hash] == -1) { //free slot or we notice that this key was already removed
+                return numTries + 1;                                             //we can do this since no duplicate keys in HT
             }
         }
         return numTries;

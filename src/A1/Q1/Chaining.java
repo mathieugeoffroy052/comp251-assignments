@@ -54,8 +54,8 @@ public class Chaining {
     /**Inserts key k into hash table. Returns the number of collisions encountered*/
     public int insertKey(int key){
         int hash = chain(key);
-        int collisions = this.Table.get(hash).size();
-        this.Table.get(hash).add(0, key);
+        int collisions = this.Table.get(hash).size(); //get num of elements already in the array at hashed index
+        this.Table.get(hash).add(0, key); //add at top of the array
         return collisions;
     }
 
