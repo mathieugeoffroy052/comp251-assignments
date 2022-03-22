@@ -27,7 +27,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/xchart-3.8.1/xchart-3.8.1.jar!/" />
+          <root url="jar://$USER_HOME$/Library/Mobile Documents/com~apple~CloudDocs/McGill Winter 2022/COMP 251/xchart-3.8.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
